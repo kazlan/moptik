@@ -1,2 +1,2 @@
 angular
-	.module('optikApp',['angular-meteor','ui.router','ionic','firebase']);
+	.module('optikApp',['angular-meteor','ui.router','ionic']);

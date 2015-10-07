@@ -5,10 +5,10 @@
         .module("optikApp")
         .factory("dataFactory", dataFactory);
         
-    dataFactory.$inject = ['$http','$firebaseArray'];
+    dataFactory.$inject = ['$http','$meteor'];
     
     function dataFactory($http, $firebaseArray){
-        var clientesRef = new Firebase("https://optik.firebaseio.com/clientes");
+        var clientesRef = new $Mongo.collection('clientes');
         var service = {
             clientesArray : $firebaseArray(clientesRef),
             parseXLSX : parseXLSX,
