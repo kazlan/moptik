@@ -1,0 +1,19 @@
+ion-side-menus
+	ion-side-menu(side="left")
+		ion-header-bar
+			h1.title Optik v0.0.1
+		ion-content
+			ion-list
+				ion-item.item-icon-left(ui-sref="dashboard")
+					i.icon.ion-home.calm
+					| Página principal
+				ion-item.item-icon-left(ui-sref="listado")
+					i.icon.ion-person.calm
+					| Lista de Clientes
+				ion-item.item-icon-left(ui-sref="dataUpload") 
+					i.icon.ion-ios-cloud-upload-outline.calm
+					| Importar archivo de datos
+	ion-side-menu-content(drag-content="true" edge-drag-threshold="true")
+		ui-view
+	//- IMPORTA LIBRERIAS
+	// recuerda añadir xlsx como modulo

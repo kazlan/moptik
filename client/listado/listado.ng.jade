@@ -1,0 +1,42 @@
+.listado(ng-controller="listadoController")
+	ion-header-bar.bar-positive(align-title="centre")
+		.buttons
+			button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+		h1.title Listado de clientes {{testie}}
+		.buttons
+			button.button(ng-click="openPopover($event)") Filtros
+	ion-content(ng-controller="listadoController")
+		ion-list
+			.ion-item(ng-repeat="cliente in clientes | filtroClientes:query")
+				{{cliente.$id}} - {{cliente.nombre}}
+				
+	// popover de Filtros
+	script(id="filtros.html" type="text/ng-template")
+		ion-popover-view
+			ion-header-bar
+				h1.title Filtrado de clientes
+			ion-content
+				.list
+					label.item.item-input.item-floating-label
+						span.input-label Nombre
+						input(name="nombre" ng-model="query.nombre" type="text" placeholder="Nombre")
+					label.item.item-input.item-floating-label
+						span.input-label Ciudad/Provincia
+						input(name="ciudad" ng-model="query.localidad" type="text" placeholder="Ciudad")		
+					item.range.range-positive
+						span 0
+						input(type="range" name="meses" ng-model="query.meses" min="0" max="12" value="0")		
+						span 12
+					p.padding-left Meses sin comprar nada: {{query.meses}}
+				
+	//old - borrar al transcribir
+		md-input-container
+			label Nombre
+				input(ng-model ="query.nombre")
+			md-input-container
+				label Ciudad
+				input(ng-model="query.ciudad")
+			div(layout layout-align="center center")
+				div(flex="20" layout-align="start center" )
+					span(style="color:#C6C6C6") Meses
+				md-slider(flex="70" md-discrete ng-model="query.meses" step="1" min="0" max="12" aria-label="rating")

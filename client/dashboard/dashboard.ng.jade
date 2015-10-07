@@ -1,0 +1,20 @@
+// main app window
+// muestra cards con resúmenes de datos
+ion-header-bar.bar-positive(align-title="centre")
+	.buttons
+		button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+	h1.title Optik Dashboard
+	.buttons
+		button.button Login
+ion-content(ng-controller="dashboardController")
+	.card
+		.item
+			|Clientes por proximidad
+		.item.item-text-wrap
+			| proximity card
+	.card 
+		.item.item-text-wrap
+			| alerts card
+	.card
+		.item.item-text-wrap
+			| new notes card

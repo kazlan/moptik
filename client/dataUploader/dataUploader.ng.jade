@@ -1,0 +1,22 @@
+.dataUploader(ng-controller="dataUploaderController")
+	ion-header-bar.bar-positive(align-title="centre")
+		.buttons
+			button.button.button-icon.icon.ion-navicon(menu-toggle="left")
+		h1.title Subida de Datos 
+
+	ion-content(style="text-align: center")
+		.no-file(ng-if="!lineas")
+			h2.light top spacer
+			
+			button.button-large.button-positive(ng-click="abrirFileDialog()")
+				i.icon.ion-ios-cloud-upload-outline(style="font-size:96px !important")
+				| &nbsp;&nbsp;Subir archivo xlsx
+			input(type="file" id="excel" accept=".xlsx" style="display: none" onchange="angular.element(this).scope().fileChanged(this.files)")
+			
+			h2.light Spacer
+			
+			p(ng-if="lineas") El archivo es el que nos llega directamente por email con nombre "MªEugenia Cuesta Mes..blahblah.xslx".
+			p(ng-if="!lineas") Lineas: {{lineas}}
+		.file-selected(ng-if="lineas > 0")
+			h2.light spacer
+			h4.positive Lineas: {{lineas}}
