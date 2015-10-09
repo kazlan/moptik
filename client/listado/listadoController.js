@@ -6,7 +6,6 @@ listadoController.$inject=['$scope','dataFactory','$ionicPopover'];
 
 function listadoController($scope,dataFactory,$ionicPopover){
 	$scope.clientes = dataFactory.clientesArray;
-	console.log($scope.clientes);
 	$scope.query = {
 		nombre: "",
 		localidad: "",
