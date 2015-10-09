@@ -8,7 +8,7 @@
 	ion-content(ng-controller="listadoController")
 		ion-list
 			.ion-item(ng-repeat="cliente in clientes | filtroClientes:query")
-				{{cliente.$id}} - {{cliente.nombre}}
+				{{cliente.id}} - {{cliente.nombre}}
 				
 	// popover de Filtros
 	script(id="filtros.html" type="text/ng-template")

@@ -10,10 +10,9 @@ function dataUploaderController($scope, dataFactory){
 		ionic.trigger('click', { target: document.getElementById('excel') });
 	}
 	$scope.fileChanged = function(archivos){
-            //dataFactory.parseXLSX(archivos[0]);
-			console.log("En fileChanged");
-			var lines = Object.key
-			$scope.lineas = Object.keys(dataFactory.lineas(archivos[0])).length;
-			console.log($scope.lineas);
+            dataFactory.parseXLSX(archivos[0]);
+			//var lines = Object.key
+			//$scope.lineas = Object.keys(dataFactory.lineas(archivos[0])).length;
+			//console.log($scope.lineas);
         }
 };
