@@ -7,8 +7,16 @@
 			button.button(ng-click="openPopover($event)") Filtros
 	ion-content(ng-controller="listadoController")
 		ion-list
-			.ion-item(ng-repeat="cliente in clientes | filtroClientes:query")
-				{{cliente.id}} - {{cliente.nombre}}
+			.list.card(ng-repeat="cliente in clientes | filtroClientes:query")
+				.item.item-avatar
+					img(src="http://lorempixel.com/200/200")
+					h2 {{cliente.nombre}}
+					p {{cliente.id}}
+				.item.item-avatar(ng-if="cliente.THF.piezas_ult_pedido || cliente.MAX.piezas_ult_pedido")
+					p(ng-if="cliente.THF.piezas_ult_pedido") Tommy: {{cliente.THF.piezas_ult_pedido}} el {{cliente.THF.fecha_ult_pedido}}
+					p(ng-if="cliente.MAX.piezas_ult_pedido") MAX: {{cliente.MAX.piezas_ult_pedido}} el {{cliente.MAX.fecha_ult_pedido}}
+				
+				
 				
 	// popover de Filtros
 	script(id="filtros.html" type="text/ng-template")
@@ -28,15 +36,3 @@
 						input(type="range" name="meses" ng-model="query.meses" min="0" max="12" value="0")		
 						span 12
 					p.padding-left Meses sin comprar nada: {{query.meses}}
-				
-	//old - borrar al transcribir
-		md-input-container
-			label Nombre
-				input(ng-model ="query.nombre")
-			md-input-container
-				label Ciudad
-				input(ng-model="query.ciudad")
-			div(layout layout-align="center center")
-				div(flex="20" layout-align="start center" )
-					span(style="color:#C6C6C6") Meses
-				md-slider(flex="70" md-discrete ng-model="query.meses" step="1" min="0" max="12" aria-label="rating")

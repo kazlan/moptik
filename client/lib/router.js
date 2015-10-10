@@ -1,7 +1,7 @@
 angular
 	.module('optikApp')
 	.config( function($stateProvider, $urlRouterProvider){
-		$urlRouterProvider.otherwise('upload');
+		$urlRouterProvider.otherwise('listado');
 		$stateProvider
 			.state('dashboard', {
 				url: '/dashboard',

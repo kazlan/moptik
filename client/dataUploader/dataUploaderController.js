@@ -1,3 +1,4 @@
+/* global ionic */
 angular
 	.module('optikApp')
 	.controller('dataUploaderController', dataUploaderController);

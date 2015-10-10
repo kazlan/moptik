@@ -1,3 +1,5 @@
+/* global Clientes */
+/* global XLSX */
     angular
         .module("optikApp")
         .factory("dataFactory", dataFactory);
