@@ -11,7 +11,10 @@
 				.item.item-avatar
 					img(src="http://lorempixel.com/200/200")
 					h2 {{cliente.nombre}}
-					p {{cliente.id}}
+					p 
+						{{cliente.id}}
+						span(ng-if="cliente.geo")
+							&nbsp;loc: {{cliente.geo.lat}},{{cliente.geo.lng}}
 				.item.item-avatar(ng-if="cliente.THF.piezas_ult_pedido || cliente.MAX.piezas_ult_pedido")
 					p(ng-if="cliente.THF.piezas_ult_pedido") Tommy: {{cliente.THF.piezas_ult_pedido}} el {{cliente.THF.fecha_ult_pedido}}
 					p(ng-if="cliente.MAX.piezas_ult_pedido") MAX: {{cliente.MAX.piezas_ult_pedido}} el {{cliente.MAX.fecha_ult_pedido}}

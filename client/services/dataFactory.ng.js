@@ -4,9 +4,9 @@
         .module("optikApp")
         .factory("dataFactory", dataFactory);
         
-    dataFactory.$inject = ['$http','$meteor'];
+    dataFactory.$inject = ['$meteor','locationFactory'];
     
-    function dataFactory($http, $meteor){
+    function dataFactory($meteor,locationFactory){
         var service = {
             clientesArray : $meteor.collection(Clientes),
             parseXLSX : parseXLSX,
@@ -39,6 +39,7 @@
                     }
                     Clientes.update(documento._id,documento);
                 }else{
+                    // No existe el cliente en la DB
                     documento = {
                         nombre: linea.Nombre || "",
                         localidad: fixCiudad(linea.Localidad) || "",
@@ -54,7 +55,18 @@
                         total_anterior: linea["Pzas Fact Total YAG"] || "",
                         piezas_hasta_ahora: linea["Pzas Order YTD.AA"] || ""
                     }
-                    clientes.save(documento);                    
+                    // pedimos la geo y a la vuelta guardamos el documento
+                    locationFactory.locateCP(documento.localidad, documento.provincia).then(
+                        function(data){
+                            documento.geo =  data;
+                            clientes.save(documento);  
+                            console.log(documento.geo);                           
+                        },
+                        function(data){
+                            documento.geo = null;
+                            clientes.save(documento);                                                         
+                        }
+                    );
                 }
                 
             // FIN foreach

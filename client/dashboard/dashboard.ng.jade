@@ -9,9 +9,10 @@ ion-header-bar.bar-positive(align-title="centre")
 ion-content(ng-controller="dashboardController")
 	.card
 		.item
-			|Clientes por proximidad
-		.item.item-text-wrap
-			| proximity card
+			| Clientes por proximidad
+		.item.item-text-wrap(ng-if="location")
+			{{location.coords.latitude}},{{location.coords.longitude}}
+		
 	.card 
 		.item.item-text-wrap
 			| alerts card

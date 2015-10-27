@@ -2,16 +2,27 @@ angular
 	.module('optikApp')
 	.controller('listadoController',listadoController);
 	
-listadoController.$inject=['$scope','dataFactory','$ionicPopover'];
+listadoController.$inject=['$scope','dataFactory','$ionicPopover', 'locationFactory'];
 
-function listadoController($scope,dataFactory,$ionicPopover){
+function listadoController($scope,dataFactory,$ionicPopover, locationFactory){
 	$scope.clientes = dataFactory.clientesArray;
+	$scope.geo = {};
 	$scope.query = {
 		nombre: "",
 		localidad: "",
 		provincia: "",
 		meses: 0
 	};
+
+	$scope.getGeo = function(cp, provincia){
+		locationFactory.locateCP(cp, provincia).then(
+			function success(data){
+				$scope.geo = data;
+			},function error(data){
+				console.log(data);
+			}
+		);
+	}
 	
 	//gestión del popover
 	$ionicPopover
